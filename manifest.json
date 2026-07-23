@@ -1,0 +1,25 @@
+{
+  "manifest_version": 3,
+  "name": "简洁新标签页",
+  "version": "2.0",
+  "description": "Google 风格的简洁新标签页，搜索由 Bing 提供，带搜索建议和历史",
+  "chrome_url_overrides": {
+    "newtab": "startpage.html"
+  },
+  "icons": {
+    "128": "icon.png"
+  },
+  "permissions": [
+    "storage"
+  ],
+  "host_permissions": [
+    "https://www.bing.com/*",
+    "https://sug.so.360.cn/*"
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'; connect-src https://sug.so.360.cn"
+  },
+  "background": {
+    "service_worker": "background.js"
+  }
+}

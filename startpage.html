@@ -1,0 +1,116 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>新标签页</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+  }
+  .header {
+    width: 100%; display: flex; justify-content: flex-end;
+    padding: 16px 24px; font-size: 13px; color: #444;
+  }
+  .header a { color: #444; text-decoration: none; margin-left: 20px; cursor: pointer; }
+  .header a:hover { text-decoration: underline; }
+  .main {
+    flex: 1; display: flex; flex-direction: column; align-items: center;
+    justify-content: center; width: 100%; max-width: 640px; padding: 0 20px;
+  }
+  .logo {
+    font-size: 72px; font-weight: 500; letter-spacing: -1px;
+    margin-bottom: 32px; user-select: none; line-height: 1.1;
+  }
+  .logo span:nth-child(1) { color: #4285F4; }
+  .logo span:nth-child(2) { color: #EA4335; }
+  .logo span:nth-child(3) { color: #FBBC05; }
+  .logo span:nth-child(4) { color: #4285F4; }
+  .logo span:nth-child(5) { color: #34A853; }
+  .logo span:nth-child(6) { color: #EA4335; }
+  .search-container { width: 100%; position: relative; }
+  .search-box {
+    width: 100%; padding: 14px 48px 14px 20px; border: 1px solid #dfe1e5;
+    border-radius: 24px; font-size: 16px; outline: none;
+    transition: box-shadow 0.2s, border-color 0.2s;
+  }
+  .search-box:hover, .search-box:focus {
+    box-shadow: 0 1px 6px rgba(32,33,36,.28);
+    border-color: rgba(223,225,229,0);
+  }
+  .search-btn {
+    position: absolute; right: 12px; top: 50%; transform: translateY(-50%);
+    background: none; border: none; cursor: pointer; font-size: 18px;
+    color: #4285F4; padding: 4px;
+  }
+  .shortcuts {
+    display: flex; gap: 24px; flex-wrap: wrap; justify-content: center;
+    margin-top: 48px; max-width: 520px;
+  }
+  .shortcut {
+    display: flex; flex-direction: column; align-items: center;
+    text-decoration: none; color: #333; font-size: 12px; gap: 6px;
+    padding: 8px 12px; border-radius: 8px; transition: background 0.15s; width: 80px;
+  }
+  .shortcut:hover { background: #f0f0f0; }
+  .shortcut-icon {
+    width: 48px; height: 48px; background: #f0f0f0; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; font-weight: 500; color: #555;
+  }
+  .shortcut-name {
+    text-align: center; overflow: hidden; text-overflow: ellipsis;
+    white-space: nowrap; width: 100%;
+  }
+  .footer { padding: 16px; font-size: 12px; color: #999; }
+  .suggestions {
+    position: absolute; top: 100%; left: 0; right: 0;
+    background: #fff; border: 1px solid #dfe1e5;
+    border-radius: 0 0 24px 24px;
+    box-shadow: 0 4px 6px rgba(32,33,36,.28);
+    display: none; z-index: 100; overflow: hidden;
+  }
+  .suggestions.active { display: block; }
+  .suggestion-item {
+    padding: 8px 20px; cursor: pointer; display: flex;
+    align-items: center; gap: 12px; font-size: 14px; color: #333;
+  }
+  .suggestion-item:hover, .suggestion-item.active { background: #f0f0f0; }
+  .suggestion-item .icon {
+    font-size: 14px; color: #999; width: 16px;
+    text-align: center; flex-shrink: 0;
+  }
+  .suggestion-separator {
+    height: 1px; background: #e8eaed; margin: 4px 0;
+  }
+  .search-box.suggestions-active {
+    border-radius: 24px 24px 0 0;
+    box-shadow: 0 1px 6px rgba(32,33,36,.28);
+    border-color: rgba(223,225,229,0);
+  }</style>
+</head>
+<body>
+<div class="header">
+  <a id="settingsLink">设置</a>
+</div>
+<div class="main">
+  <div class="logo">
+    <span>G</span><span>o</span><span>o</span><span>g</span><span>l</span><span>e</span>
+  </div>
+  <form class="search-container" id="searchForm">
+    <input type="text" class="search-box" id="searchInput" placeholder="在 Bing 上搜索，或输入网址" autofocus>
+    <button type="submit" class="search-btn">&#x1F50D;</button>
+    <div class="suggestions" id="suggestions"></div>
+</form>
+  <div class="shortcuts" id="shortcuts"></div>
+</div>
+<div class="footer">搜索由 Bing 提供</div>
+<script src="script.js"></script>
+</body>
+</html>
